@@ -14,7 +14,8 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [dropped, setIsDropped] =useState(false);
-  const [filtered, setflitered] = useState([]);
+  const [filtered, setfiltered] = useState([]);
+  const [region, setRegion] = useState([]);
 
   const handleDropDown = () =>{
     setIsDropped(true);
@@ -28,26 +29,25 @@ export default function Home() {
       const response = await fetch("/data/data.json");
       const json = await response.json();
       setData(json);
+      setfiltered(json)
     }
     fetchData()
-    
+
     
   },[])
 
-  const collectSearch = (e) =>{
+
+  const searching = (e) =>{
     let value = e.target.value;
     setQuery(value);
-  }
-
-  const searching = () =>{
-    let newArray = data.filter((item)=>{
-      return item.name.includes(query)
+    let newData =data.filter((item)=>{
+      return query.toLocaleLowerCase() === " " || item.name.toLocaleLowerCase().includes(query.toLocaleLowerCase());
     })
-    setData(newArray)
-
+    if(query.toLocaleLowerCase === ""){
+      return data;
+    }
+    setfiltered(newData);
   }
-  console.log(query)
-  console.log(data)
 
   return (
     <Layout>
@@ -59,13 +59,13 @@ export default function Home() {
               <input 
                 type='text' 
                 value={query}
-                onChange={collectSearch}
+                onChange={searching}
                 placeholder=' Search for a country' 
                 className="border-2 outline-none rounded-md absolute -z-10 left-0 right-0 top-0 bottom-0"
                 style={{paddingLeft: "60px"}}
               />
               <Image src="/assest/search.svg"
-                onClick={searching}
+
                 width={140}
                 height={140}
                 alt="search-icon"
@@ -101,7 +101,7 @@ export default function Home() {
 
               <div className=' bg-white  rounded-t-lg overflow-auto flex-wrap left-16 w-full h-44 shadow-xl'>
                 <ul className="flex flex-col ml-5 mt-8  pb-8 text-lg gap-2">
-                  {data.filter((item, index, self)=>(self.slice(0, index).findIndex((t) => _.isEqual(t.region, item.region)) === -1 )).map((names)=>{
+                  {filtered.filter((item, index, self)=>(self.slice(0, index).findIndex((t) => _.isEqual(t.region, item.region)) === -1 )).map((names)=>{
                     return(
                       <Link  
                         href="/" 
@@ -118,13 +118,12 @@ export default function Home() {
           
         </div>
         <div className=" w-full flex flex-col items">
-          {data.map((items)=>{
+          {filtered.map((items)=>{
             return (
-              <div className='flex flex-col rounded-md gap-5 items-center'>
+              <div key={items.alpha3Code} className='flex flex-col rounded-md gap-5 items-center'>
 
                 <div 
-                  key={items.alpha3Code}
-                  className=" w-11/12 border-4 rounded-md shadow-lg h-80 flex flex-col justify-center items-center"
+                  className=" w-11/12 border-4 rounded-md shadow-lg h-96 flex flex-col justify-center items-center"
                   >
                   <img 
                     src={items.flags.png}

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,3 +18,15 @@
   }
 }
 
+@layer base {
+  :root {
+    --text-text-base: hsl(350, 15%, 8%);
+    --lightmode-input-base: hsl(0, 0%, 52%);    
+    --lightmode-background:hsl(0, 0%, 98%);
+  }
+  .Dark-mode{
+    --text-text-base: hsl(0, 0%, 100%);
+    --lightmode-input-base: hsl(209, 23%, 22%);    
+    --lightmode-background:hsl(207, 26%, 17%);
+  }
+}

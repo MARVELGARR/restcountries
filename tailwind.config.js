@@ -12,6 +12,20 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily:{ 
+        Nunito : ["Nunito", "sans-serif"]
+      },
+      textColor:{
+        skin:{
+          base: "var(--text-text-base)",
+        }
+      },
+      backgroundColor:{
+        skin:{
+          fill: "var(--lightmode-background)",
+          input: "var(--lightmode-input-base)"
+        },
+      }
     },
   },
   plugins: [],

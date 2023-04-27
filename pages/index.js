@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { v4 as uuid} from "uuid"
 
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
       const response = await fetch("/data/data.json");
       const json = await response.json();
       setData(json);
-      setfiltered(json)
+      setfiltered(json);
     }
     fetchData()
 
@@ -50,11 +51,13 @@ export default function Home() {
   }
 
   return (
+
+
     <Layout>
-      <div className='flex flex-col mt-10 gap-8  justify-between pl-8 pr-8'>
+      <div className='flex flex-col text-skin-base font-Nunito mt-10 gap-8  justify-between pl-8 pr-8'>
         <div className=''>
           <form>
-            <div className='relative  rounded-lg shadow-lg drop-shadow-xl flex justify-center w-full h-14 bg-gray-600'>
+            <div className='relative  rounded-lg shadow-lg drop-shadow-xl flex justify-center w-full h-14 bg-skin-input'>
               
               <input 
                 type='text' 
@@ -76,7 +79,7 @@ export default function Home() {
           </form>
         </div>
           <div className='relative '>
-            <div className='relative bg-white shadow-lg drop-shadow-2xl h-11 rounded-lg flex items-center justify-between pl-5'>
+            <div className='relative bg-skin-fill shadow-lg drop-shadow-2xl h-11 rounded-lg flex items-center justify-between pl-5'>
             Filter by Region
             <div className='absolute top-1 right-5'>
               <Image
@@ -99,7 +102,7 @@ export default function Home() {
           </div>
             <div className={` ${dropped ? "" : "hidden"} absolute w-48 top-14`}>
 
-              <div className=' bg-white  rounded-t-lg overflow-auto flex-wrap left-16 w-full h-44 shadow-xl'>
+              <div className=' bg-skin-fill  rounded-t-lg overflow-auto flex-wrap left-16 w-full h-44 shadow-xl'>
                 <ul className="flex flex-col ml-5 mt-8  pb-8 text-lg gap-2">
                   {filtered.filter((item, index, self)=>(self.slice(0, index).findIndex((t) => _.isEqual(t.region, item.region)) === -1 )).map((names)=>{
                     return(
@@ -117,7 +120,7 @@ export default function Home() {
         <div>
           
         </div>
-        <div className=" w-full flex flex-col items">
+        <div className=" w-full gap-10 flex flex-col items">
           {filtered.map((items)=>{
             return (
               <div key={items.alpha3Code} className='flex flex-col rounded-md gap-5 items-center'>
@@ -132,7 +135,7 @@ export default function Home() {
                     
                     className="w-full h-full rounded-t-lg object-cover"
                   />
-                  <div className=" bg-white w-full p-5 pb-5 h-4/5 flex flex-col gap-1">
+                  <div className=" bg-skin-fill w-full p-5 pb-5 h-4/5 flex flex-col gap-1">
                     <div className="flex gap-2 text-2xl font-extrabold mb-1 ">{items.name}</div>
                     <div className="flex gap-2 text-lg "><div className=" font-bold">Population: </div>{items.population}</div>
                     <div className="flex gap-2 text-lg "><div className=" font-bold">Region: </div>{items.region}</div>

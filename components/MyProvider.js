@@ -5,16 +5,19 @@ function MyProvider({children}) {
 
     const [isActive, setIsActive] = useState(false);
 
-    const handleThemes = () =>{
+    const handleDark = () =>{
       setIsActive(true);
-      console.log(isActive)
+    }
+    const handleLight = () =>{
+      setIsActive(false);
     }
 
 
     const values = {
-      handleThemes,
+      handleDark,
       isActive,
-      setIsActive
+      setIsActive,
+      handleLight
     }
 
 

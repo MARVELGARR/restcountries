@@ -8,13 +8,12 @@ function Layout({children}) {
 
 
   return (
-    <MyProvider>
 
-      <div className=" bg-gray-100">
-        <Header/>
-        {children}
-      </div>
-    </MyProvider>
+    <div className=" bg-gray-100">
+      <Header/>
+      {children}
+    </div>
+
   )
 }
 

@@ -1,37 +1,67 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import Layout from '@/components/Layout';
+import Image from 'next/image';
+import fs from 'fs';
+import path from 'path';
 
-export default function Country() {
 
-  const router = useRouter();
-  const { alpha2Code } = router.query;
-  const [country, setCountry] = useState([])
+export default function Country({country}) {
 
-  useEffect(() => {
-    async function fetchCountry() {
-      const response = await fetch(`/data.json`);
-      const json = await response.json();
-      const country = json.find(c => c.alpha2Code === alpha2Code);
-      setCountry(country);
-    }
-    if (alpha2Code) {
-      fetchCountry();
-    }
-  }, [alpha2Code]);
-
-  if (!country) {
-    return <div>Loading...</div>
-  }
 
   return (
     <Layout>
-
       <div>
-        <div className="">Back</div>
-        <h1>{country.name}</h1>
+        <div></div>
+        <div>back</div>
+      </div>
+      <div>
+        <img></img>
+        <div>
+          <div>{country.name</div>
+          <div className="">
+            <div></div>
+          </div>
+        </div>
+        <div className=""></div>
       </div>
     </Layout>
   )
 }
 
+export async function getStaticPaths(){
+
+  const filePath = path.join(process.cwd(), "public", "data.json")
+  const jsonData = fs.readFileSync(filePath);
+  const data = JSON.parse(jsonData);
+
+  const paths = data.map((country)=>{
+    return (
+      
+      {params : {alpha2Code : country.alpha2Code}}
+      
+    )
+    
+  })
+  console.log(paths)
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({params}){
+  const filePath = path.join(process.cwd(), 'public', 'data.json');
+  const jsonData = fs.readFileSync(filePath);
+  const data = JSON.parse(jsonData);
+  const country = data.find((c)=>{
+    return(
+      c.alpha2Code === params.alpha2Code
+    )
+  })
+  return{
+    props: {
+      country
+    }
+  }
+}

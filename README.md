@@ -1,3 +1,5 @@
+SiteDemo: https://restcountries-delta.vercel.app/
+Repo: https://github.com/MARVELGARR/restcountries
 Well well well, look who just finished another project! Congratulations, you've done something today. And what did you do, you might ask? You created a beautiful Next.js site using a REST countries API, that's what!
 
 You probably think you're so cool now, with your dynamic routes and getStaticProps and getStaticPaths. But let's be real, we all know that was just a fancy way of saying "I know how to make a website that looks like it's alive".

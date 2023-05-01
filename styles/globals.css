@@ -30,3 +30,17 @@
     --lightmode-background:hsl(207, 26%, 17%);
   }
 }
+
+@media (min-width: 1024px){
+
+  .grids{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  }
+
+}
+@media (min-width: 370px){
+  .iphone-SE{
+    height:100%;
+  }
+}
